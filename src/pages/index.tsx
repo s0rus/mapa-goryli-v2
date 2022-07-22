@@ -3,7 +3,7 @@ import Menu from '@/components/Menu';
 import ButtonWithLoader from '@/components/shared/ButtonWithLoader';
 import AuthLayout from '@/layouts/AuthLayout';
 import MainLayout from '@/layouts/MainLayout';
-import { Typography } from '@mui/material';
+import { CircularProgress, Typography } from "@mui/material";
 import { DiscordIcon } from 'assets/DiscordIcon';
 import type { NextPage } from 'next';
 import { signIn, signOut, useSession } from 'next-auth/react';
@@ -21,9 +21,11 @@ const Home: NextPage = () => {
   if (status === 'loading')
     return (
       <MainLayout>
-        <h1>LOADING...</h1>
+        <CircularProgress />
       </MainLayout>
     );
+
+  console.log(session);
 
   return (
     <>

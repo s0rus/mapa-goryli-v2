@@ -1,6 +1,6 @@
-import { theme } from '@/styles/theme';
-import { Box } from '@mui/material';
-import styled from '@emotion/styled';
+import { theme } from "@/styles/theme";
+import { Box } from "@mui/material";
+import styled from "@emotion/styled";
 
 export const MainLayoutContent = styled(Box)`
   min-height: 100vh;
