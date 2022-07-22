@@ -2,7 +2,7 @@ import Map from '@/components/Map';
 import Menu from '@/components/Menu';
 import ButtonWithLoader from '@/components/shared/ButtonWithLoader';
 import AuthLayout from '@/layouts/AuthLayout';
-import MainLayout from '@/layouts/AuthLayout/MainLayout';
+import MainLayout from '@/layouts/MainLayout';
 import { Typography } from '@mui/material';
 import { DiscordIcon } from 'assets/DiscordIcon';
 import type { NextPage } from 'next';
