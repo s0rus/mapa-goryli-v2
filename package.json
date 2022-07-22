@@ -19,7 +19,6 @@
     ]
   },
   "lint-prepush": {
-    "base": "main",
     "tasks": {
       "*.{js,jsx,ts,tsx}": [
         "eslint"
