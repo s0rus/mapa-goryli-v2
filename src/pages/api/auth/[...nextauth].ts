@@ -13,7 +13,6 @@ export const authOptions: NextAuthOptions = {
       profile: (profile) => {
         return {
           id: profile.id,
-          snowflake: profile.id,
           name: profile.username,
           ...profile,
         };
@@ -23,7 +22,6 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async session({ session, user }) {
       session.userId = user.id;
-      session.snowflake = user.snowflake;
       return Promise.resolve(session);
     },
   },
