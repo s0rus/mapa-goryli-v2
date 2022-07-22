@@ -10,7 +10,7 @@
     "postinstall": "prisma generate",
     "test": "jest",
     "test:w": "jest --watch",
-    "prettier:check": "prettier --check \"src/**/*.{ts,css,html,tsx}\""  
+    "prettier:check": "prettier --check \\src/**/*.{ts,css,html,tsx}\\"
   },
   "lint-staged": {"src/**/*.{ts,css,html}": ["npm run prettier:check"]},
   "husky": {   

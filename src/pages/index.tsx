@@ -1,6 +1,8 @@
 import Map from '@/components/Map';
+import Menu from '@/components/Menu';
 import ButtonWithLoader from '@/components/shared/ButtonWithLoader';
 import AuthLayout from '@/layouts/AuthLayout';
+import MainLayout from '@/layouts/AuthLayout/MainLayout';
 import { Typography } from '@mui/material';
 import { DiscordIcon } from 'assets/DiscordIcon';
 import type { NextPage } from 'next';
@@ -16,18 +18,21 @@ const Home: NextPage = () => {
     await signIn('discord');
   };
 
-  const handleLogout = async () => {
-    await signOut();
-  };
+  if (status === 'loading')
+    return (
+      <MainLayout>
+        <h1>LOADING...</h1>
+      </MainLayout>
+    );
 
   return (
     <>
-      {session ? (
+      {!session ? (
         <AuthLayout>
           <Typography variant='h1'>MAPA GORYLI</Typography>
           <ButtonWithLoader
             loading={isLogginIn}
-            disabled={isLogginIn || status === 'authenticated'}
+            disabled={isLogginIn}
             fullWidth
             variant='contained'
             startIcon={<DiscordIcon />}
@@ -37,7 +42,10 @@ const Home: NextPage = () => {
           </ButtonWithLoader>
         </AuthLayout>
       ) : (
-        <Map />
+        <MainLayout>
+          <Menu />
+          <Map />
+        </MainLayout>
       )}
     </>
   );
