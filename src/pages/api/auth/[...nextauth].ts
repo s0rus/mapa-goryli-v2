@@ -1,10 +1,10 @@
-import { trpc } from './../../../utils/trpc';
+import { trpc } from "./../../../utils/trpc";
 import NextAuth, { type NextAuthOptions } from 'next-auth';
 import DiscordProvider from 'next-auth/providers/discord';
 
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { prisma } from '../../../server/db/client';
-import { traceDeprecation } from 'process';
+import { traceDeprecation } from "process";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
