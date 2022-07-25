@@ -1,10 +1,10 @@
-import { trpc } from "./../../../utils/trpc";
+import { trpc } from './../../../utils/trpc';
 import NextAuth, { type NextAuthOptions } from 'next-auth';
 import DiscordProvider from 'next-auth/providers/discord';
 
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { prisma } from '../../../server/db/client';
-import { traceDeprecation } from "process";
+import { traceDeprecation } from 'process';
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -15,7 +15,6 @@ export const authOptions: NextAuthOptions = {
       profile: (profile) => {
         return {
           id: profile.id,
-          snowflake: profile.id,
           name: profile.username,
           ...profile,
         };
@@ -23,10 +22,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async session({ session, user }) {
-      trpc.useQuery([""]);
-      session.userId = user.id;
-      session.snowflake = user.snowflake;
+    async session({ session }) {
       return Promise.resolve(session);
     },
   },

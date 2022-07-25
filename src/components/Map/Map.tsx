@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { Map as MapElement, Marker } from 'react-map-gl';
-import mapboxgl from 'mapbox-gl';
+import React from "react";
+import { Map as MapElement } from "react-map-gl";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { MapContent } from './Map.styles';
+import Markers from "./Markers";
+import { UserDetails } from "utils/types";
 
 const MAPBOX_PROPS = {
   initialViewState: {
@@ -10,40 +11,52 @@ const MAPBOX_PROPS = {
     longitude: 19.1451,
     zoom: 6,
   },
-  mapboxAccessToken: 'pk.eyJ1Ijoic29ydXNhYmxlIiwiYSI6ImNsNXRtYjh0bzBoa3IzZXBrcmQzNWdsM3UifQ.mi2c5VaybNF7KAPqXW06MA',
-  mapStyle: 'mapbox://styles/sorusable/cky60aapf902n14l5mt9mlalf',
+  mapboxAccessToken: `${process.env.NEXT_PUBLIC_MAPBOX_TOKEN}`,
+  mapStyle: `${process.env.NEXT_PUBLIC_MAPBOX_STYLES}`,
   style: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
   },
   doubleClickZoom: false,
 };
 
+const userPins: UserDetails.UserInfo[] = [
+  {
+    expires: "2022-08-24T08:31:35.017Z",
+    user: {
+      email: "molik223@gmail.com",
+      image:
+        "https://cdn.discordapp.com/avatars/336429686907207681/a_4be443312bb1d1ce15c6812544a9ecc0.gif",
+      name: "soruse",
+      position: {
+        longitude: 19,
+        latitude: 51,
+      },
+    },
+    userId: "cl5s628jd000609fag7kd3fo6",
+  },
+
+  {
+    expires: "2022-08-24T08:31:35.017Z",
+    user: {
+      email: "molik223@gmail.com",
+      image:
+        "https://cdn.discordapp.com/avatars/336429686907207681/a_4be443312bb1d1ce15c6812544a9ecc0.gif",
+      name: "soruse",
+      position: {
+        longitude: 21,
+        latitude: 52,
+      },
+    },
+    userId: "cl5s628jd000609fag7asdasdasd",
+  },
+];
+
 const Map = () => {
   return (
-    // <ReactMapGL
-    //   {...viewport}
-    //   onViewportChange={(nextViewport) => setViewport(nextViewport)}
-    //   mapboxApiAccessToken={process.env.MAPBOX_TOKEN}
-    //   mapStyle={process.env.MAPBOX_STYLES}
-    //   doubleClickZoom={false}
-    // >
-    //   {/* <Markers users={users} setUserDetails={setUserDetails} />
-    //   {newMarker ? (
-    //     <NewMarkerForm
-    //       longitude={newMarker.longitude}
-    //       latitude={newMarker.latitude}
-    //       setNewMarker={setNewMarker}
-    //       addNewUser={(origin, about) => addNewUser(origin, about)}
-    //       currentUser={currentUser}
-    //       userInputs={userInputs}
-    //       setUserInputs={setUserInputs}
-    //     />
-    //   ) : null} */}
-    // </ReactMapGL>
     <MapContent>
-      <MapElement {...MAPBOX_PROPS}>
-        <Marker longitude={19.1451} latitude={51.9194} />
+      <MapElement {...MAPBOX_PROPS} reuseMaps data-testid="mapElement">
+        <Markers userPins={userPins} />
       </MapElement>
     </MapContent>
   );
