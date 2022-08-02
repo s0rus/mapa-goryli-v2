@@ -1,15 +1,15 @@
 export namespace UserDetails {
-  export interface UserPersonals {
+  export interface Personals {
+    id: string;
     name: string;
     email: string;
     image: string;
-    position: UserPosition;
+    discriminator: string;
   }
 
   export interface UserInfo {
-    user: UserPersonals;
+    user: Personals;
     expires?: string;
-    userId: string;
   }
 
   export interface UserPosition {

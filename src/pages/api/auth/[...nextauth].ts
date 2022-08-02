@@ -1,5 +1,5 @@
-import NextAuth, { type NextAuthOptions } from 'next-auth';
-import DiscordProvider from 'next-auth/providers/discord';
+import NextAuth, { User, type NextAuthOptions } from 'next-auth';
+import DiscordProvider, { DiscordProfile } from 'next-auth/providers/discord';
 
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { prisma } from '../../../server/db/client';
@@ -10,17 +10,28 @@ export const authOptions: NextAuthOptions = {
     DiscordProvider({
       clientId: process.env.DISCORD_CLIENT_ID!,
       clientSecret: process.env.DISCORD_CLIENT_SECRET!,
-      profile: (profile) => {
+      profile(profile: DiscordProfile) {
+        if (profile.avatar === null) {
+          const defaultAvatarNumber = parseInt(profile.discriminator) % 5;
+          profile.image_url = `https://cdn.discordapp.com/embed/avatars/${defaultAvatarNumber}.png`;
+        } else {
+          const format = profile.avatar.startsWith('a_') ? 'gif' : 'png';
+          profile.image_url = `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.${format}`;
+        }
         return {
           id: profile.id,
           name: profile.username,
-          ...profile,
+          email: profile.email,
+          image: profile.image_url,
+          discriminator: profile.discriminator,
         };
       },
     }),
   ],
   callbacks: {
-    async session({ session }) {
+    async session({ session, user }) {
+      session.user.id = user.id;
+      session.user.discriminator = user.discriminator;
       return Promise.resolve(session);
     },
   },

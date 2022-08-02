@@ -1,5 +1,5 @@
 import { theme } from '@/styles/theme';
-import { Box, Container } from '@mui/material';
+import { Box, Container, Stack } from '@mui/material';
 import styled from '@emotion/styled';
 
 export const MenuContent = styled(Box)`
@@ -14,4 +14,19 @@ export const MenuContainer = styled(Container)`
   border-radius: 0;
 
   background-color: ${theme.palette.background.default};
+`;
+
+export const CurrentUserContainer = styled(Stack)`
+  /* background-color: red; */
+  align-items: center;
+`;
+
+export const CurrentUserInfo = styled(Stack)`
+  width: 100%;
+  align-items: center;
+`;
+
+export const CurrentUserMenu = styled(Stack)`
+  width: 100%;
+  margin-left: 1rem;
 `;
