@@ -1,4 +1,4 @@
-import NextAuth, { User, type NextAuthOptions } from "next-auth";
+import NextAuth, { type User, type NextAuthOptions } from "next-auth";
 import DiscordProvider, { DiscordProfile } from "next-auth/providers/discord";
 
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
@@ -31,7 +31,7 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async session({ session, user }) {
       session.user.id = user.id;
-      session.user.discriminator = user.discriminator;
+      session.user.discriminator = user.discriminator as string;
       return Promise.resolve(session);
     },
   },

@@ -30,8 +30,8 @@ const userPins: UserDetails.UserInfo[] = [
       image: 'https://cdn.discordapp.com/avatars/336429686907207681/a_4be443312bb1d1ce15c6812544a9ecc0.gif',
       name: 'soruse',
       position: {
-        longitude: 19,
         latitude: 51,
+        longitude: 19.1451,
       },
     },
   },
