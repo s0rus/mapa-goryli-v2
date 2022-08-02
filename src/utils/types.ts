@@ -5,6 +5,7 @@ export namespace UserDetails {
     email: string;
     image: string;
     discriminator: string;
+    position: UserPosition;
   }
 
   export interface UserInfo {

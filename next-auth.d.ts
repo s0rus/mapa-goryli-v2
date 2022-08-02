@@ -1,6 +1,6 @@
-import { DefaultSession } from 'next-auth';
+import { DefaultSession } from "next-auth";
 
-declare module 'next-auth' {
+declare module "next-auth" {
   /**
    * Returned by `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
    */
@@ -8,6 +8,6 @@ declare module 'next-auth' {
     user: {
       id?: string | null; // NOTE: made "id" optional (?) and nullable (null) so that it matches types with ones already existing in DefaultSession
       discriminator?: string | null;
-    } & DefaultSession['user'];
+    } & DefaultSession["user"];
   }
 }

@@ -3,7 +3,7 @@ import Menu from '@/components/Menu';
 import ButtonWithLoader from '@/components/shared/ButtonWithLoader';
 import AuthLayout from '@/layouts/AuthLayout';
 import MainLayout from '@/layouts/MainLayout';
-import { CircularProgress, Typography } from '@mui/material';
+import { CircularProgress, Typography } from "@mui/material";
 import { DiscordIcon } from 'assets/DiscordIcon';
 import type { NextPage } from 'next';
 import { signIn, signOut, useSession } from 'next-auth/react';
